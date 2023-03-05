@@ -13,7 +13,7 @@ def vsd(p_atlyginimas):
 
 def psd(p_atlyginimas):
     """
-     VSD - 12.52%
+     VSD - 6.98%
     """
     return p_atlyginimas / 100 * 6.98
 
