@@ -4,6 +4,15 @@ npd_kai_nevirsija_1926 = lambda atlyginimas: 625 - 0.42 * (atlyginimas - 840)
 npd_kai_virsija_1926 = lambda atlyginimas: 400 - 0.18 * (atlyginimas - 642)
 
 
+@dataclass(frozen=True)
+class AtlyginimoDuomenys:
+    npd: float
+    gpm: float
+    psd: float
+    vsd: float
+    atlyginimas_i_rankas: float
+
+
 def vsd(p_atlyginimas):
     """
      VSD - 12.52%
@@ -42,7 +51,7 @@ def npd(atlyginimas_burto: float) -> float:
     return npd if npd > 0 else 0
 
 
-def atlyginimo_skaiciuokle(atlyginimas):
+def atlyginimo_skaiciuokle(atlyginimas) -> AtlyginimoDuomenys:
     """
     Pagrindinis atlyginimo apskaičiavimas
     :param atlyginimas:
@@ -53,14 +62,6 @@ def atlyginimo_skaiciuokle(atlyginimas):
     psd_ = psd(atlyginimas)
     vsd_ = vsd(atlyginimas)
     atlyginimas_i_rankas = atlyginimas - (gpm_ + psd_ + vsd_)
-
-    @dataclass(frozen=True)
-    class AtlyginimoDuomenys:
-        npd: float
-        gpm: float
-        psd: float
-        vsd: float
-        atlyginimas_i_rankas: float
 
     data = AtlyginimoDuomenys(npd_, gpm_, psd_, vsd_, atlyginimas_i_rankas)
     print(f"{data}")

@@ -5,32 +5,65 @@
 <div class="container">
     <h2> Atlyginimo skaičiuoklė</h2>
 
-    <form action="/netto" method="POST">
+    <form id="calculate-form" action="/netto" method="POST">
         <div class="form-group">
             <label>Įveskite sumą "ant popieriaus" arba (gross)</label>
-            <input type="number" name="atlyginimas" class="form-control" placeholder="Įveskite skaičių">
+            <input id="input" type="number" name="atlyginimas" class="form-control" placeholder="Įveskite skaičių">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+        <button type="submit" class="btn btn-primary">Submit POST</button>
+        <button type="button" class="btn btn-primary"  onclick="getData()">Submit Ajax</button>
 
-  <script type="text/javascript">
-    $(document).on('submit','#todo-form',function(e)
-                   {
-      console.log('hello');
-      e.preventDefault();
-      $.ajax({
-        type:'POST',
-        url:'/',
-        data:{
-          todo:$("#todo").val()
-        },
-        success:function()
-        {
-          alert('saved');
-        }
-      })
-    });
-  </script>
+
+    </form>
+
+</div>
+<div id="data"> </data>
+
+
+<script>
+
+
+function getData() {
+  let query;
+  query = $('#input').val();
+  url = "/netto?gross=" + query
+  console.log(url)
+  $.ajax({
+    url: url,
+    type: "GET",
+    success: function(data) {
+      $("#data").text(data);
+      console.log(data)
+      let html = ""
+      // for (const key in data) {
+      //   console.log(`${key}: ${data[key]}`);
+      //   html +=  `<li class="list-group-item">${key}: ${data[key]} €</li>`
+      // }
+      html = `
+      <div class="container">
+          <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">Atlyginimas į rankas: ${data.atlyginimas_i_rankas} €</li>
+                <li class="list-group-item">NPD: ${data.npd} €</li>
+                <li class="list-group-item">GPM: ${data.gpm} €</li>
+                <li class="list-group-item">PSD: ${data.psd} €</li>
+                <li class="list-group-item">VSD: ${data.vsd} €</li>
+            </ul>
+        </div>
+    </div>
+      `
+      $('#data').html(html)
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown);
+    }
+  });
+}
+
+
+
+</script>
 
 {% endblock %}
+
+
