@@ -1,8 +1,6 @@
 from flask import Flask, jsonify, render_template, request
 
-from fetch_data import get_events_at_night
 from logika import atlyginimo_skaiciuokle
-
 
 app = Flask(__name__)
 
@@ -24,6 +22,8 @@ def hello_world():
     return render_template('index.html')
 
 
-@app.route('/moletu_observatorija')
+@app.route('/get_data')
 def get_data():
-    return jsonify(get_events_at_night())
+    gross = request.args.get('gross')
+    data = {'message': 'Hello world!', 'gross': gross}
+    return jsonify(data)
