@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template, request
-
+import requests
 from logika import atlyginimo_skaiciuokle
 
 app = Flask(__name__)
