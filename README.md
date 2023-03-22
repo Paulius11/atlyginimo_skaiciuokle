@@ -3,6 +3,8 @@
 
 Šiuo kodu norėjau parodyti, kad galima labai lengvai talpinti webines svetaines su python.
 
+Taip pat yra api užklausos pavyzdys.
+
 Čia parašytas *labai* prarastas kodas, ir yra kaip pavyzdys kuriant flask aplikacijas, kodo strutūra ir kintamuosius pagal geriausias praktikas reiktų vadinti angliškai.
 
 # Pycharm
