@@ -11,11 +11,11 @@ app = Flask(__name__)
 def neto():
     if request.method == 'POST':
         atlyginimas_ant_popieriaus = request.form['atlyginimas']
-        atskaiciuota = atlyginimo_skaiciuokle(int(atlyginimas_ant_popieriaus))
-        return render_template('rezultatas.html', rezultatas=atskaiciuota)
+        atskaiciuota = atlyginimo_skaiciuokle(float(atlyginimas_ant_popieriaus))
+        return render_template('result_post.html', rezultatas=atskaiciuota)
     if request.method == "GET":
         gross = request.args.get('gross')
-        atskaiciuota = atlyginimo_skaiciuokle(int(gross))
+        atskaiciuota = atlyginimo_skaiciuokle(float(gross))
         return jsonify(atskaiciuota)
 
 

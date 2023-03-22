@@ -63,5 +63,6 @@ def atlyginimo_skaiciuokle(atlyginimas) -> AtlyginimoDuomenys:
     vsd_ = vsd(atlyginimas)
     atlyginimas_i_rankas = atlyginimas - (gpm_ + psd_ + vsd_)
     gpm_ = 0 if gpm_ < 0 else gpm_
-    data = AtlyginimoDuomenys(npd_, gpm_, psd_, vsd_, atlyginimas_i_rankas)
+    args = [round(x, 2) for x in [npd_, gpm_, psd_, vsd_, atlyginimas_i_rankas]]
+    data = AtlyginimoDuomenys(*args)
     return data

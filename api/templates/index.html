@@ -8,7 +8,7 @@
     <form id="calculate-form" action="/netto" method="POST">
         <div class="form-group">
             <label>Įveskite sumą "ant popieriaus" arba (gross)</label>
-            <input id="input" type="number" name="atlyginimas" class="form-control" placeholder="Įveskite skaičių">
+            <input id="input" type="number" step="0.01" name="atlyginimas" class="form-control" placeholder="Įveskite skaičių">
         </div>
         <button type="submit" class="btn btn-primary">Submit POST</button>
         <button type="button" class="btn btn-primary"  onclick="getData()">Submit Ajax</button>
